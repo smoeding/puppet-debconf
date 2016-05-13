@@ -8,7 +8,7 @@
   "project_page": "https://github.com/smoeding/puppet-debconf",
   "issues_url": "https://github.com/smoeding/puppet-debconf/issues",
   "data_provider": null,
-  "tags": [ "Debian", "debconf" ],
+  "tags": [ "debconf" ],
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
