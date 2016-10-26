@@ -53,6 +53,15 @@ debconf { 'dash/sh':
 }
 ```
 
+**Note**: Although this code is perfectly legal Puppet code, the string `'true'` will trigger a warning (`quoted_booleans`) using puppet-lint. But we really want to use the string `'true'` and not the boolean truth value here. So in this case we can easily suppress the warning with a [control comment](http://puppet-lint.com/controlcomments/):
+
+```puppet
+debconf { 'dash/sh':
+  type  => 'boolean',
+  value => 'true',      # lint:ignore:quoted_booleans
+}
+```
+
 ### Automatically set a root password for MySQL during installation
 
 These two resources preseed the installation of the `mysql-server-5.5` package with the password for the MySQL root user to use. The password has to be set twice because the installation dialog asks two times for the password to detect typos. This password is used if the package is installed after these resources have been created.
@@ -109,6 +118,8 @@ The value to set. Valid options: String. Default: Undefined.
 ## Limitations
 
 This module is only useful on Debian based systems where the debconf database is used.
+
+A control comment may be needed to suppress puppet-lint warnings when you set boolean values. See the [Usage](#usage) section for an example.
 
 ## Development
 
