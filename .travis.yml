@@ -1,13 +1,8 @@
 ---
 sudo: false
-language: ruby
 gemfile: .gemfile
-rvm:
-  - 1.9.3
-  - 2.1.5
-  - 2.1.6
-  - 2.2
-  - 2.3.1
+language: ruby
+rvm: 2.2
 matrix:
   fast_finish: true
   include:
