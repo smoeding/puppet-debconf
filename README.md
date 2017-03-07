@@ -109,7 +109,7 @@ The name of the package that owns the item. Valid options: String. Default: the 
 
 ##### `type`
 
-The data type of the item. Valid options: string, boolean, select, multiselect, note, text, password, title. Default: Undefined.
+The data type of the item. Valid options: string, boolean, select, multiselect, note, text, password, title. This parameter is mandatory if `ensure` is `present`. Default: Undefined.
 
 ##### `value`
 
@@ -120,6 +120,8 @@ The value to set. Valid options: String. Default: Undefined.
 This module is only useful on Debian based systems where the debconf database is used.
 
 A control comment may be needed to suppress puppet-lint warnings when you set boolean values. See the [Usage](#usage) section for an example.
+
+The value of the `type` parameter is only used when an item is created. It is not updated if the value of the item is changed later.
 
 ## Development
 

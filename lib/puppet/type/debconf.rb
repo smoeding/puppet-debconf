@@ -61,4 +61,12 @@ Puppet::Type.newtype(:debconf) do
     newvalues(/\S/)
     munge { |value| value.strip } # Remove leading and trailing spaces
   end
+
+  validate do
+    unless self[:type]
+      unless (self[:ensure].to_s == 'absent')
+        raise(Puppet::Error, "type is a required attribute")
+      end
+    end
+  end
 end
