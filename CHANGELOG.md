@@ -1,12 +1,17 @@
-## 2016-10-26 - Release 1.0.1
+## 2017-03-10 - Release 2.0.0
 
 ### Summary
 
-This release adds Ubuntu 16.04 to the list of supported operating systems. The README has also been updated.
+This release no longer allows the `type` parameter to be empty when creating the resource. It also includes an important fix to correctly detect if a defined password needs to be updated.
 
 #### Features
 
-- Add Ubuntu 16.04 (Xenial Xerus) to the list of supported operating systems.
+- Added Ubuntu 16.10 (Yakkety Yak) to the list of supported operating systems.
+- Added an additional validation for the `type` parameter. This effectively makes the parameter mandatory for `ensure => present`. The type of the entry is required when the entry is missing in the debconf database and has to be created.
+
+#### Bugfixes
+
+- Fix a bug that prevented reading a preseeded password correctly. Previously a password item would trigger a resource update with every Puppet run.
 
 ## 2016-05-13 - Release 1.0.0
 
