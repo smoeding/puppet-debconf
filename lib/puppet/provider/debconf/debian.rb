@@ -42,6 +42,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
       # Close pipe and finish, ignore remaining output from command
       pipe.close_write
       pipe.read(nil)
+      pipe.close_read
       @pipe = nil
     end
 
