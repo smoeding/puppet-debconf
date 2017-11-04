@@ -1,20 +1,20 @@
 # debian.rb --- Debian provider for debconf type
 
 Puppet::Type.type(:debconf).provide(:debian) do
-  desc %q{Manage debconf database entries on Debian based systems.}
+  desc 'Manage debconf database entries on Debian based systems.'
 
-  confine :osfamily => :debian
-  defaultfor :osfamily => :debian
+  confine osfamily: :debian
+  defaultfor osfamily: :debian
 
   class Debconf < IO
     # A private class to communicate with the debconf database
 
     # The regular expression used to parse the debconf-communicate output
     DEBCONF_COMMUNICATE = Regexp.new(
-      "^([0-9]+)" +             # error code
-      "\s*" +                   # whitespace
-      "(.*)" +                  # return value
-      "\s*$"                    # optional trailing spaces
+      '^([0-9]+)' +             # error code
+      '\s*' +                   # whitespace
+      '(.*)' +                  # return value
+      '\s*$'                    # optional trailing spaces
     )
 
     def initialize(pipe)
@@ -32,9 +32,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
 
       pipe = IO.popen("/usr/bin/debconf-communicate #{package}", 'w+')
 
-      unless pipe
-        fail("Debconf: failed to open pipe to debconf-communicate")
-      end
+      fail('Debconf: failed to open pipe to debconf-communicate') unless pipe
 
       # Call block for pipe
       yield self.new(pipe) if block_given?
@@ -53,18 +51,15 @@ Puppet::Type.type(:debconf).provide(:debian) do
       @pipe.puts(command)
       response = @pipe.gets("\n")
 
-      if response
-        if DEBCONF_COMMUNICATE.match(response)
-          # Response is devided into the return code (casted to int) and the
-          # result text. Depending on the context the text could be an error
-          # message or the value of an item.
-          @retcode, @retmesg = $1.to_i, $2
-        else
-          fail("Debconf: debconf-communicate returned (#{response})")
-        end
-      else
-        fail("Debconf: debconf-communicate unexpectedly closed pipe")
-      end
+      fail("Debconf: debconf-communicate unexpectedly closed pipe") unless response
+
+      fail("Debconf: debconf-communicate returned (#{response})") unless DEBCONF_COMMUNICATE.match(response)
+
+      # Response is devided into the return code (casted to int) and the
+      # result text. Depending on the context the text could be an error
+      # message or the value of an item.
+      @retcode = $1.to_i
+      @retmesg = $2
     end
 
     # Get an item from the debconf database

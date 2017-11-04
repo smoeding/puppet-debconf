@@ -7,8 +7,8 @@ describe provider_class do
 
   let(:resource) do
     Puppet::Type.type(:debconf).new(
-      :name     => name,
-      :provider => 'debian',
+      name:     name,
+      provider: 'debian'
     )
   end
 
@@ -18,8 +18,8 @@ describe provider_class do
     provider
   end
 
-  it "should be the default provider on :osfamily => Debian" do
-    Facter.expects(:value).with(:osfamily).returns("Debian")
+  it 'is the default provider on :osfamily => Debian' do
+    Facter.expects(:value).with(:osfamily).returns('Debian')
     expect(described_class.default?).to be_truthy
   end
 end
