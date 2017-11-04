@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Puppet::Type.type(:debconf) do
   on_supported_os.each do |os, facts|
     context "on #{os}" do
-      before :each do
+      before do
         Facter.clear
         facts.each do |k, v|
           Facter.stubs(:fact).with(k).returns Facter.add(k) { setcode { v } }
@@ -24,7 +24,7 @@ describe Puppet::Type.type(:debconf) do
       end
 
       describe 'namevar validation' do
-        it "has :item as its namevar" do
+        it 'has :item as its namevar' do
           expect(described_class.key_attributes).to eq([:item])
         end
       end

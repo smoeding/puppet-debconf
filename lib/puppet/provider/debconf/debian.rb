@@ -51,21 +51,21 @@ Puppet::Type.type(:debconf).provide(:debian) do
       @pipe.puts(command)
       response = @pipe.gets("\n")
 
-      fail("Debconf: debconf-communicate unexpectedly closed pipe") unless response
+      fail('Debconf: debconf-communicate unexpectedly closed pipe') unless response
 
       fail("Debconf: debconf-communicate returned (#{response})") unless DEBCONF_COMMUNICATE.match(response)
 
       # Response is devided into the return code (casted to int) and the
       # result text. Depending on the context the text could be an error
       # message or the value of an item.
-      @retcode = $1.to_i
-      @retmesg = $2
+      @retcode = Regexp.last_match(1).to_i
+      @retmesg = Regexp.last_match(2)
     end
 
     # Get an item from the debconf database
     # Return the value of the item or nil if the item is not found
     def get(item)
-      self.send("GET #{item}")
+      send("GET #{item}")
 
       # Check for errors
       case @retcode
@@ -78,10 +78,10 @@ Puppet::Type.type(:debconf).provide(:debian) do
 
     # Unregister an item in the debconf database
     def unregister(item)
-      self.send("UNREGISTER #{item}")
+      send("UNREGISTER #{item}")
 
       # Check for errors
-      unless @retcode == 0
+      unless @retcode.zero?
         fail("Debconf: debconf-communicate returned #{@retcode}: #{@retmesg}")
       end
     end
@@ -93,7 +93,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
 
   def initialize(value = {})
     super(value)
-    @properties = Hash.new
+    @properties = {}
   end
 
   # Fetch item properties

@@ -56,7 +56,7 @@ Puppet::Type.newtype(:debconf) do
   end
 
   newproperty(:value) do
-    desc %{The value for the item (e.g. 'Europe').}
+    desc "The value for the item (e.g. 'Europe')."
 
     newvalues(%r{\S})
     munge { |value| value.strip } # Remove leading and trailing spaces
