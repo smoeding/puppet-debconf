@@ -35,7 +35,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
       fail('Debconf: failed to open pipe to debconf-communicate') unless pipe
 
       # Call block for pipe
-      yield self.new(pipe) if block_given?
+      yield new(pipe) if block_given?
 
       # Close pipe and finish, ignore remaining output from command
       pipe.close_write
@@ -81,9 +81,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
       send("UNREGISTER #{item}")
 
       # Check for errors
-      unless @retcode.zero?
-        fail("Debconf: debconf-communicate returned #{@retcode}: #{@retmesg}")
-      end
+      fail("Debconf: debconf-communicate returned #{@retcode}: #{@retmesg}") unless @retcode.zero?
     end
   end
 
