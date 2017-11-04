@@ -2,6 +2,8 @@
 sudo: false
 language: ruby
 matrix:
+  fast_finish: true
+  include:
   - rvm: 1.9.3
     env: PUPPET_GEM_VERSION="~> 3.8.0"
   - rvm: 2.1.5
