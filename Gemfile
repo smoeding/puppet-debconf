@@ -1,13 +1,13 @@
 source ENV['GEM_SOURCE'] || 'https://rubygems.org'
 
 group :test do
-  gem 'puppet-lint',            :require => false
-  gem 'puppet_facts',           :require => false
-  gem 'puppetlabs_spec_helper', :require => false
-  gem 'rspec-puppet',           :require => false
-  gem 'rspec-puppet-facts',     :require => false
-  gem 'json', '< 2.0.0',        :require => false if RUBY_VERSION < '2.0.0'
-  gem 'json_pure', '< 2.0.0',   :require => false if RUBY_VERSION < '2.0.0'
+  gem 'puppetlabs_spec_helper',     :require => false
+  gem 'rspec-puppet',               :require => false
+  gem 'semantic_puppet',            :require => false
+  gem 'rubocop', '~> 0.49.1',       :require => false if RUBY_VERSION >= '2.3.0'
+  gem 'rubocop-rspec', '~> 1.15.0', :require => false if RUBY_VERSION >= '2.3.0'
+  gem 'json', '< 2.0.0',            :require => false if RUBY_VERSION < '2.0.0'
+  gem 'json_pure', '< 2.0.0',       :require => false if RUBY_VERSION < '2.0.0'
 end
 
 if RUBY_VERSION < '2.0.0'
