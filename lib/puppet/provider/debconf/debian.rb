@@ -32,7 +32,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
 
       pipe = IO.popen("/usr/bin/debconf-communicate #{package}", 'w+')
 
-      fail('Debconf: failed to open pipe to debconf-communicate') unless pipe
+      raise(Puppet::Error, 'Debconf: failed to open pipe to debconf-communicate') unless pipe
 
       # Call block for pipe
       yield new(pipe) if block_given?
@@ -51,9 +51,9 @@ Puppet::Type.type(:debconf).provide(:debian) do
       @pipe.puts(command)
       response = @pipe.gets("\n")
 
-      fail('Debconf: debconf-communicate unexpectedly closed pipe') unless response
+      raise(Puppet::Error, 'Debconf: debconf-communicate unexpectedly closed pipe') unless response
 
-      fail("Debconf: debconf-communicate returned (#{response})") unless DEBCONF_COMMUNICATE.match(response)
+      raise(Puppet::Error, "Debconf: debconf-communicate returned (#{response})") unless DEBCONF_COMMUNICATE.match(response)
 
       # Response is devided into the return code (casted to int) and the
       # result text. Depending on the context the text could be an error
@@ -72,7 +72,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
       when 0 then @retmesg      # OK
       when 10 then nil          # item doesn't exist
       else
-        fail("Debconf: debconf-communicate returned #{@retcode}: #{@retmesg}")
+        raise(Puppet::Error, "Debconf: debconf-communicate returned #{@retcode}: #{@retmesg}")
       end
     end
 
@@ -81,7 +81,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
       send("UNREGISTER #{item}")
 
       # Check for errors
-      fail("Debconf: debconf-communicate returned #{@retcode}: #{@retmesg}") unless @retcode.zero?
+      raise(Puppet::Error, "Debconf: debconf-communicate returned #{@retcode}: #{@retmesg}") unless @retcode.zero?
     end
   end
 
