@@ -1,3 +1,13 @@
+## 2018-02-04 - Release 2.1.0
+
+### Summary
+
+This release removes support for some legacy OS releases and closes a bug.
+
+#### Bugfixes
+
+- Fix a bug where a pipe to a subprocess was closed too late. This caused a subprocess to become a zombie until the Puppet run finished.
+
 ## 2017-03-10 - Release 2.0.0
 
 ### Summary
