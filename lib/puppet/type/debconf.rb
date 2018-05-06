@@ -49,10 +49,10 @@ Puppet::Type.newtype(:debconf) do
   newparam(:type) do
     desc "The type of the item. This can only be one of the following
       values: string, boolean, select, multiselect, note, text, password,
-      title."
+      title, seen."
 
     newvalues(:string, :boolean, :select, :multiselect,
-              :note, :text, :password, :title)
+              :note, :text, :password, :title, :seen)
   end
 
   newproperty(:value) do
