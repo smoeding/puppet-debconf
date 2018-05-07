@@ -20,10 +20,6 @@ Puppet::Type.type(:debconf).provide(:debian) do
     def initialize(pipe)
       # The pipe to the debconf-communicate program
       @pipe = pipe
-
-      # Last return code and message from debconf-communicate
-      @retcode = nil
-      @retmesg = ''
     end
 
     # Open communication channel with the debconf database
@@ -58,30 +54,32 @@ Puppet::Type.type(:debconf).provide(:debian) do
       # Response is devided into the return code (casted to int) and the
       # result text. Depending on the context the text could be an error
       # message or the value of an item.
-      @retcode = Regexp.last_match(1).to_i
-      @retmesg = Regexp.last_match(2)
+      retcode = Regexp.last_match(1).to_i
+      retmesg = Regexp.last_match(2)
+
+      [retcode, retmesg]
     end
 
     # Get an item from the debconf database
     # Return the value of the item or nil if the item is not found
     def get(item)
-      send("GET #{item}")
+      resultcode, resultmesg = send("GET #{item}")
 
       # Check for errors
-      case @retcode
-      when 0 then @retmesg      # OK
+      case resultcode
+      when 0 then resultmesg    # OK
       when 10 then nil          # item doesn't exist
       else
-        raise(Puppet::Error, "Debconf: debconf-communicate returned #{@retcode}: #{@retmesg}")
+        raise(Puppet::Error, "Debconf: debconf-communicate returned #{resultcode}: #{resultmesg}")
       end
     end
 
     # Unregister an item in the debconf database
     def unregister(item)
-      send("UNREGISTER #{item}")
+      resultcode, resultmesg = send("UNREGISTER #{item}")
 
       # Check for errors
-      raise(Puppet::Error, "Debconf: debconf-communicate returned #{@retcode}: #{@retmesg}") unless @retcode.zero?
+      raise(Puppet::Error, "Debconf: debconf-communicate returned #{resultcode}: #{resultmesg}") unless resultcode.zero?
     end
   end
 
