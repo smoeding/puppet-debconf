@@ -70,7 +70,21 @@ Puppet::Type.type(:debconf).provide(:debian) do
       when 0 then resultmesg    # OK
       when 10 then nil          # item doesn't exist
       else
-        raise(Puppet::Error, "Debconf: GET #{item} returned #{resultcode}: #{resultmesg}")
+        raise(Puppet::Error, "Debconf: 'GET #{item}' returned #{resultcode}: #{resultmesg}")
+      end
+    end
+
+    # Get the seen flag for an item from the debconf database
+    # Return a boolean true or false
+    def seen?(item)
+      resultcode, resultmesg = send("FGET #{item} seen")
+
+      # Check for errors
+      case resultcode
+      when 0 then resultmesg == 'true'
+      when 10 then false
+      else
+        raise(Puppet::Error, "Debconf: 'FGET #{item} seen' returned #{resultcode}: #{resultmesg}")
       end
     end
 
@@ -79,7 +93,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
       resultcode, resultmesg = send("UNREGISTER #{item}")
 
       # Check for errors
-      raise(Puppet::Error, "Debconf: UNREGISTER #{item} returned #{resultcode}: #{resultmesg}") unless resultcode.zero?
+      raise(Puppet::Error, "Debconf: 'UNREGISTER #{item}' returned #{resultcode}: #{resultmesg}") unless resultcode.zero?
     end
   end
 
