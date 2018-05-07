@@ -22,8 +22,20 @@ Puppet::Type.newtype(:debconf) do
           package => 'libc6',
           type    => 'boolean',
           value   => 'true',
+          seen    => true,
         }
   EOT
+
+  def munge_boolean(value)
+    case value
+    when true, "true", :true
+      :true
+    when false, "false", :false
+      :false
+    else
+      fail("munge_boolean only takes booleans")
+    end
+  end
 
   ensurable do
     defaultvalues
@@ -60,6 +72,17 @@ Puppet::Type.newtype(:debconf) do
 
     newvalues(%r{\S})
     munge { |value| value.strip } # Remove leading and trailing spaces
+  end
+
+  newproperty(:seen, :boolean => true) do
+    desc "The value of the 'seen' flag. This can be left undefined or be one
+      of the boolean values true or false."
+
+    newvalues(:true, :false)
+
+    munge do |value|
+      @resource.munge_boolean(value)
+    end
   end
 
   validate do

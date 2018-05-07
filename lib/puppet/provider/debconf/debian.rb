@@ -81,7 +81,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
 
       # Check for errors
       case resultcode
-      when 0 then resultmesg == 'true'
+      when 0 then (resultmesg == 'true')
       when 10 then false
       else
         raise(Puppet::Error, "Debconf: 'FGET #{item} seen' returned #{resultcode}: #{resultmesg}")
@@ -115,8 +115,15 @@ Puppet::Type.type(:debconf).provide(:debian) do
 
       if value
         Puppet.debug("Debconf: #{resource[:item]} = '#{value}'")
-        @properties[:value] = value
         @properties[:exists] = true
+        @properties[:value] = value
+
+        # Fetch 'seen' flag if type parameter is set
+        unless resource[:seen].nil?
+          seen = debconf.seen?(resource[:item])
+          Puppet.debug("Debconf: #{resource[:item]} seen flag is '#{seen}'")
+          @properties[:seen] = seen
+        end
       else
         @properties[:exists] = false
       end
@@ -127,12 +134,24 @@ Puppet::Type.type(:debconf).provide(:debian) do
   def update
     Puppet.debug("Debconf: updating #{resource[:name]}")
 
-    # Build the string to send
-    args = [:package, :item, :type, :value].map { |e| resource[e] }.join(' ')
-
     IO.popen('/usr/bin/debconf-set-selections', 'w+') do |pipe|
-      Puppet.debug("Debconf: debconf-set-selections #{args}")
-      pipe.puts(args)
+      args = [resource[:package], resource[:item]]
+      args << resource[:type]
+      args << resource[:value]
+
+      comm = args.join(' ')
+      Puppet.debug("Debconf: debconf-set-selections #{comm}")
+      pipe.puts(comm)
+
+      unless resource[:seen].nil?
+        args = [resource[:package], resource[:item]]
+        args << 'seen'
+        args << resource[:seen].to_s
+
+        comm = args.join(' ')
+        Puppet.debug("Debconf: debconf-set-selections #{comm}")
+        pipe.puts(comm)
+      end
 
       # Ignore remaining output from command
       pipe.close_write
@@ -169,6 +188,18 @@ Puppet::Type.type(:debconf).provide(:debian) do
 
   def value=(val)
     Puppet.debug("Debconf: calling set #{resource[:item]} to #{val}")
+    update
+  end
+
+  def seen
+    Puppet.debug("Debconf: calling get seen flag of #{resource[:item]}")
+    fetch if @properties.empty?
+
+    @properties[:seen].to_s
+  end
+
+  def seen=(val)
+    Puppet.debug("Debconf: calling set seen flag of #{resource[:item]} to #{val}")
     update
   end
 end
