@@ -70,7 +70,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
       when 0 then resultmesg    # OK
       when 10 then nil          # item doesn't exist
       else
-        raise(Puppet::Error, "Debconf: debconf-communicate returned #{resultcode}: #{resultmesg}")
+        raise(Puppet::Error, "Debconf: GET #{item} returned #{resultcode}: #{resultmesg}")
       end
     end
 
@@ -79,7 +79,7 @@ Puppet::Type.type(:debconf).provide(:debian) do
       resultcode, resultmesg = send("UNREGISTER #{item}")
 
       # Check for errors
-      raise(Puppet::Error, "Debconf: debconf-communicate returned #{resultcode}: #{resultmesg}") unless resultcode.zero?
+      raise(Puppet::Error, "Debconf: UNREGISTER #{item} returned #{resultcode}: #{resultmesg}") unless resultcode.zero?
     end
   end
 
