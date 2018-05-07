@@ -28,12 +28,12 @@ Puppet::Type.newtype(:debconf) do
 
   def munge_boolean(value)
     case value
-    when true, "true", :true
+    when true, 'true', :true
       :true
-    when false, "false", :false
+    when false, 'false', :false
       :false
     else
-      fail("munge_boolean only takes booleans")
+      raise(Puppet::Error, 'munge_boolean only takes booleans')
     end
   end
 
@@ -74,7 +74,7 @@ Puppet::Type.newtype(:debconf) do
     munge { |value| value.strip } # Remove leading and trailing spaces
   end
 
-  newproperty(:seen, :boolean => true) do
+  newproperty(:seen, boolean: true) do
     desc "The value of the 'seen' flag. This can be left undefined or be one
       of the boolean values true or false."
 
