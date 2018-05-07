@@ -9,8 +9,8 @@
 1. [Overview](#overview)
 2. [Module Description - What does the module do?](#module-description)
 3. [Setup - The basics of getting started with debconf](#setup)
-	* [What debconf affects](#what-debconf-affects)
-	* [Setup requirements](#setup-requirements)
+    * [What debconf affects](#what-debconf-affects)
+    * [Setup requirements](#setup-requirements)
 4. [Usage - Configuration options and additional functionality](#usage)
 5. [Reference - An under-the-hood peek at what the module is doing and how](#reference)
 5. [Limitations - OS compatibility, etc.](#limitations)
@@ -44,12 +44,13 @@ Use `debconf-show` or `debconf-get-selections` to find out about valid debconf e
 
 ### Use dash as replacement for the bourne shell
 
-This entry will ensure a symlink from `/bin/sh` to `/bin/dash` if `dpkg-reconfigure dash` is run the next time.
+This entry will ensure a symlink from `/bin/sh` to `/bin/dash` if `dpkg-reconfigure dash` is run the next time. It will also mark the question as seen to prevent the installer from asking this question during the installation.
 
 ```puppet
 debconf { 'dash/sh':
   type  => 'boolean',
   value => 'true',
+  seen  => true,
 }
 ```
 
@@ -59,6 +60,7 @@ debconf { 'dash/sh':
 debconf { 'dash/sh':
   type  => 'boolean',
   value => 'true',      # lint:ignore:quoted_booleans
+  seen  => true,
 }
 ```
 
@@ -114,6 +116,10 @@ The data type of the item. Valid options: string, boolean, select, multiselect, 
 ##### `value`
 
 The value to set. Valid options: String. Default: Undefined.
+
+##### `seen`
+
+Optionally set the seen flag in the `debconf` database for `item`. This can be left undefined if the seen flag should not be managed. Otherwise this must be a boolean value and the flag is set to the specified value. Valid options: `true`, `false` or undefined. Default value: Undefined
 
 ## Limitations
 
