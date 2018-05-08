@@ -22,7 +22,7 @@ Manage entries in the Debian debconf database.
 
 ## Module Description
 
-Debian based systems use the debconf database to record configuration choices the user made during the installation of a package. The system uses the stored answers and does not need to query the user again when the package is upgraded or reinstalled at a later time.
+Debian based systems use the debconf database to record configuration choices the user made during the installation of a package. The system uses the stored answers and therefore does not need to query the user again when the package is upgraded or reinstalled at a later time.
 
 The debconf type allows preseeding the database with given answers to allow an unattended package installation or modification of package defaults.
 
@@ -54,7 +54,7 @@ debconf { 'dash/sh':
 }
 ```
 
-**Note**: Although this code is perfectly legal Puppet code, the string `'true'` will trigger a warning (`quoted_booleans`) using puppet-lint. But we really want to use the string `'true'` and not the boolean truth value here. So in this case we can easily suppress the warning with a [control comment](http://puppet-lint.com/controlcomments/):
+**Note**: Although this code is perfectly legal Puppet code, the string `'true'` (not the boolean `true`) will trigger the puppet-lint warning `quoted_booleans`. But we really want to use the string `'true'` and not the boolean truth value here. So in this case we can easily suppress the warning with a [control comment](http://puppet-lint.com/controlcomments/):
 
 ```puppet
 debconf { 'dash/sh':
@@ -74,6 +74,7 @@ debconf { 'mysql-root-passwd':
   item    => 'mysql-server/root_password',
   type    => 'password',
   value   => 'secret',
+  seen    => true,
 }
 
 debconf { 'mysql-root-passwd-again':
@@ -81,6 +82,7 @@ debconf { 'mysql-root-passwd-again':
   item    => 'mysql-server/root_password_again',
   type    => 'password',
   value   => 'secret',
+  seen    => true,
 }
 ```
 
@@ -93,7 +95,7 @@ debconf { 'mysql-root-passwd-again':
 
 #### Type: `debconf`
 
-Ensures presence or absence of a debconf database enty on Debian based systems.
+Ensures presence or absence of a debconf database entry on Debian based systems.
 
 **Parameters for the `debconf` type:**
 
@@ -111,7 +113,7 @@ The name of the package that owns the item. Valid options: String. Default: the 
 
 ##### `type`
 
-The data type of the item. Valid options: string, boolean, select, multiselect, note, text, password, title. This parameter is mandatory if `ensure` is `present`. Default: Undefined.
+The data type of the item. Valid options: `'string'`, `'boolean'`, `'select'`, `'multiselect'`, `'note'`, `'text'`, `'password'`, `'title'`. This parameter is mandatory if `ensure` is `present`. Default: Undefined.
 
 ##### `value`
 
@@ -119,7 +121,7 @@ The value to set. Valid options: String. Default: Undefined.
 
 ##### `seen`
 
-Optionally set the seen flag in the `debconf` database for `item`. This can be left undefined if the seen flag should not be managed. Otherwise this must be a boolean value and the flag is set to the specified value. Valid options: `true`, `false` or undefined. Default value: Undefined
+Optionally set the `seen` flag for `item`. The `seen` flag is used to decide if the associated configuration question should be asked again. This parameter can be left undefined if the `seen` flag should not be managed. Otherwise this must be a boolean value and the flag is set to the specified value. Valid options: `true`, `false` or undefined. Default value: Undefined.
 
 ## Limitations
 
