@@ -24,7 +24,7 @@ Manage entries in the Debian debconf database.
 
 Debian based systems use the debconf database to record configuration choices the user made during the installation of a package. The system uses the stored answers and therefore does not need to query the user again when the package is upgraded or reinstalled at a later time.
 
-The debconf type allows preseeding the database with given answers to allow an unattended package installation or modification of package defaults.
+The debconf type allows preseeding the database with given answers to allow an unattended package installation or modification of package defaults. The type can optionally also manage the seen flag for an item.
 
 The standard `package` type uses the responsefile parameter to provide a file with preseeded answers during installation. The `debconf` type is a more general solution as it allows to update settings without the need to install the package at the same time.
 
@@ -121,7 +121,9 @@ The value to set. Valid options: String. Default: Undefined.
 
 ##### `seen`
 
-Optionally set the `seen` flag for `item`. The `seen` flag is used to decide if the associated configuration question should be asked again. This parameter can be left undefined if the `seen` flag should not be managed. Otherwise this must be a boolean value and the flag is set to the specified value. Valid options: `true`, `false` or undefined. Default value: Undefined.
+Optionally set the `seen` flag for `item`. The `seen` flag is used by the packaging system to decide if the associated configuration question should be asked during an installation. This parameter can be left undefined if the `seen` flag should not be managed. The packaging system normally sets this flag to `true` if an item is modified.
+
+The parameter can be a boolean value and the flag is set to the specified value. Valid options: `true`, `false` or undefined. Default value: Undefined.
 
 ## Limitations
 
