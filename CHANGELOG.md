@@ -1,3 +1,13 @@
+## 2018-05-08 - Release 2.2.0
+
+### Summary
+
+This release adds the possibility to manage the seen flag for a debconf configuration item.
+
+#### Features
+
+- The type has a new `seen` parameter to define the value of the seen flag for an item. Setting this parameter to a boolean value will set the flag to the specified value. Leaving this parameter undefined will retain the old behavior.
+
 ## 2018-02-04 - Release 2.1.0
 
 ### Summary

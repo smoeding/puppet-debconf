@@ -1,6 +1,6 @@
 {
   "name": "stm-debconf",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "author": "stm",
   "summary": "Manage debconf database items on Debian based systems.",
   "license": "BSD-2-Clause",
@@ -12,19 +12,11 @@
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": [
-        "7",
-        "8",
-        "9"
-      ]
+      "operatingsystemrelease": [ "7", "8", "9" ]
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [
-        "14.04",
-        "16.04",
-        "17.10"
-      ]
+      "operatingsystemrelease": [ "14.04", "16.04", "17.10" ]
     }
   ],
   "dependencies": [],
