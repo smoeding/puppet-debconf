@@ -42,7 +42,7 @@ This module uses programs provided by the Debian/Ubuntu `debconf` package. Debia
 
 Use `debconf-show` or `debconf-get-selections` to find out about valid debconf entries for an installed package.
 
-### Use dash as replacement for the bourne shell
+### Example: Use dash as replacement for the bourne shell
 
 This entry will ensure a symlink from `/bin/sh` to `/bin/dash` if `dpkg-reconfigure dash` is run the next time. It will also mark the question as seen to prevent the installer from asking this question during the installation.
 
@@ -64,7 +64,7 @@ debconf { 'dash/sh':
 }
 ```
 
-### Automatically set a root password for MySQL during installation
+### Example: Automatically set a root password for MySQL during installation
 
 These two resources preseed the installation of the `mysql-server-5.5` package with the password for the MySQL root user to use. The password has to be set twice because the installation dialog asks two times for the password to detect typos. This password is used if the package is installed after these resources have been created.
 
