@@ -1,7 +1,7 @@
 # debconf
 
 [![Build Status](https://travis-ci.org/smoeding/puppet-debconf.svg?branch=master)](https://travis-ci.org/smoeding/puppet-debconf)
-[![Puppet Forge](http://img.shields.io/puppetforge/v/stm/debconf.svg)](https://forge.puppetlabs.com/stm/debconf)
+[![Puppet Forge](https://img.shields.io/puppetforge/v/stm/debconf.svg)](https://forge.puppetlabs.com/stm/debconf)
 [![License](https://img.shields.io/github/license/smoeding/puppet-debconf.svg)](https://raw.githubusercontent.com/smoeding/puppet-debconf/master/LICENSE)
 
 #### Table of Contents
