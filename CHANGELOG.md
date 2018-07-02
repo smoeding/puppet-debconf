@@ -1,3 +1,14 @@
+## 2018-07-02 - Release 2.2.1
+
+### Summary
+
+The module has been converted to Puppet PDK and has been tested on Ubuntu 18.04.
+
+#### Features
+
+- Add Ubuntu 18.04 (Bionic Beaver) to the list of supported operating systems.
+- Convert to Puppet PDK.
+
 ## 2018-05-08 - Release 2.2.0
 
 ### Summary
