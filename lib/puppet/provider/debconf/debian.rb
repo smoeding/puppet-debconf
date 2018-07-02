@@ -6,9 +6,8 @@ Puppet::Type.type(:debconf).provide(:debian) do
   confine osfamily: :debian
   defaultfor osfamily: :debian
 
+  # A private class to communicate with the debconf database
   class Debconf < IO
-    # A private class to communicate with the debconf database
-
     # The regular expression used to parse the debconf-communicate output
     DEBCONF_COMMUNICATE = Regexp.new(
       '^([0-9]+)' +             # error code

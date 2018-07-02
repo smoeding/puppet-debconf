@@ -7,20 +7,37 @@
   "source": "https://github.com/smoeding/puppet-debconf",
   "project_page": "https://github.com/smoeding/puppet-debconf",
   "issues_url": "https://github.com/smoeding/puppet-debconf/issues",
-  "data_provider": null,
-  "tags": [ "debconf" ],
+  "dependencies": [
+
+  ],
   "operatingsystem_support": [
     {
       "operatingsystem": "Debian",
-      "operatingsystemrelease": [ "7", "8", "9" ]
+      "operatingsystemrelease": [
+        "7",
+        "8",
+        "9"
+      ]
     },
     {
       "operatingsystem": "Ubuntu",
-      "operatingsystemrelease": [ "14.04", "16.04", "17.10" ]
+      "operatingsystemrelease": [
+        "14.04",
+        "16.04",
+        "17.10"
+      ]
     }
   ],
-  "dependencies": [],
   "requirements": [
-    { "name": "puppet", "version_requirement": ">= 3.0.0 < 6.0.0" }
-  ]
+    {
+      "name": "puppet",
+      "version_requirement": ">= 3.0.0 < 6.0.0"
+    }
+  ],
+  "tags": [
+    "debconf"
+  ],
+  "pdk-version": "1.6.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates",
+  "template-ref": "heads/master-0-gc87eee3"
 }
