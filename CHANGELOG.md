@@ -1,3 +1,9 @@
+## 2019-09-27 - Release 3.0.0
+
+### Breaking changes
+
+- Remove support for Puppet 4.
+
 ## 2018-10-14 - Release 2.3.0
 
 ### Features
