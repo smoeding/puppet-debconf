@@ -36,7 +36,7 @@
   "tags": [
     "debconf"
   ],
-  "pdk-version": "1.9.0",
-  "template-url": "https://github.com/puppetlabs/pdk-templates",
-  "template-ref": "1.9.0-0-g7281db5"
+  "pdk-version": "1.13.0",
+  "template-url": "https://github.com/puppetlabs/pdk-templates#master",
+  "template-ref": "heads/master-0-g1bf3a4e"
 }
