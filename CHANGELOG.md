@@ -1,3 +1,10 @@
+## 2020-06-22 - Release 3.2.0
+
+### Features
+
+- Add Ubuntu 20.04 (Focal Fossa) to the list of supported operating systems.
+- Add Debian 10 (Buster) to the list of supported operating systems.
+
 ## 2019-09-27 - Release 3.0.0
 
 ### Breaking changes
