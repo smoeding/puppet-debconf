@@ -1,13 +1,10 @@
 require 'spec_helper'
 
 describe Puppet::Type.type(:debconf) do
-  on_supported_os.each do |os, facts|
+  on_supported_os.each do |os, _facts|
     context "on #{os}" do
       before(:each) do
         Facter.clear
-        facts.each do |k, v|
-          Facter.stubs(:fact).with(k).returns Facter.add(k) { setcode { v } }
-        end
       end
 
       describe 'when validating attributes' do

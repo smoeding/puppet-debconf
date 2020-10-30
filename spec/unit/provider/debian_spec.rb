@@ -19,7 +19,7 @@ describe provider_class do
   end
 
   it 'is the default provider on :osfamily => Debian' do
-    Facter.expects(:value).with(:osfamily).returns('Debian')
+    expect(Facter.fact(:osfamily)).to receive(:value).and_return('Debian')
     expect(described_class).to be_default
   end
 end
