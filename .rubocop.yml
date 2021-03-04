@@ -493,8 +493,6 @@ Lint/EmptyBlock:
   Enabled: false
 Lint/EmptyClass:
   Enabled: false
-Lint/MissingSuper:
-  Enabled: false
 Lint/NoReturnInBeginEndBlocks:
   Enabled: false
 Lint/ToEnumArguments:

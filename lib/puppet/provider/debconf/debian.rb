@@ -1,5 +1,5 @@
 # debian.rb --- Debian provider for debconf type
-
+# rubocop:disable Lint/MissingSuper
 Puppet::Type.type(:debconf).provide(:debian) do
   desc 'Manage debconf database entries on Debian based systems.'
 
