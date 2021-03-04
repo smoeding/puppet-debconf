@@ -1,3 +1,9 @@
+## 2021-03-04 - Release 3.3.0
+
+### Features
+
+- Add support for Puppet 7.
+
 ## 2020-06-22 - Release 3.2.0
 
 ### Features
