@@ -13,10 +13,11 @@ Puppet::Type.type(:debconf).provide(:debian) do
       '^([0-9]+)' +             # error code
       '\s*' +                   # whitespace
       '(.*)' +                  # return value
-      '\s*$'                    # optional trailing spaces
+      '\s*$',                   # optional trailing spaces
     )
 
     def initialize(pipe)
+      super()
       # The pipe to the debconf-communicate program
       @pipe = pipe
     end
