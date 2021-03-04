@@ -17,7 +17,6 @@ Puppet::Type.type(:debconf).provide(:debian) do
     )
 
     def initialize(pipe)
-      super()
       # The pipe to the debconf-communicate program
       @pipe = pipe
     end

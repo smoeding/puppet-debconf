@@ -1,3 +1,9 @@
+## 2021-03-04 - Release 3.3.1
+
+### Bugfixes
+
+- Fix `wrong number of arguments` error introduced by Rubocop triggered change.
+
 ## 2021-03-04 - Release 3.3.0
 
 ### Features
