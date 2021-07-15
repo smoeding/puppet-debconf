@@ -88,44 +88,7 @@ debconf { 'mysql-root-passwd-again':
 
 ## Reference
 
-- [**Types**](#types)
-  - [Type: debconf](#type-debconf)
-
-### Types
-
-#### Type: `debconf`
-
-Ensures presence or absence of a debconf database entry on Debian based systems.
-
-**Parameters for the `debconf` type:**
-
-##### `ensure`
-
-Ensures whether the resource is present. Valid options: `present`, `absent`. Default value: `present`
-
-##### `item`
-
-The configuration item to manage. This is normally a string with at least one slash character. Valid options: String. Default: the title of the debconf resource.
-
-##### `package`
-
-The name of the package that owns the item. Valid options: String. Default: the prefix of the item parameter up to the first slash character.
-
-##### `type`
-
-The data type of the item. Valid options: `'string'`, `'boolean'`, `'select'`, `'multiselect'`, `'note'`, `'text'`, `'password'`, `'title'`. This parameter is mandatory if `ensure` is `present`. Default: Undefined.
-
-##### `value`
-
-The value to set. Valid options: String. Default: Undefined.
-
-##### `seen`
-
-Optionally set the `seen` flag for `item`. The `seen` flag is used by the packaging system to decide if the associated configuration question should be asked during an installation. This parameter can be left undefined if the `seen` flag should not be managed. The packaging system normally sets this flag to `true` if an item is modified.
-
-The parameter can be a boolean value and the flag is set to the specified value. Valid options: `true`, `false` or undefined. Default value: Undefined.
-
-## Limitations
+See [REFERENCE.md](https://github.com/smoeding/puppet-debconf/blob/master/REFERENCE.md)
 
 This module is only useful on Debian based systems where the debconf database is used.
 

@@ -2,28 +2,31 @@
 
 Puppet::Type.newtype(:debconf) do
   desc <<-EOT
-    Manage debconf database entries on Debian based systems. This type
-    can either set or remove a value for a debconf database entry. It
-    uses multiple programs from the 'debconf' package.
+    @summary
+      Manage debconf database entries on Debian based systems.
 
-    Examples:
+    This type can either set or remove a value for a debconf database
+    entry. It uses multiple programs from the `debconf` package.
 
-        debconf { 'tzdata/Areas':
-          type  => 'select',
-          value => 'Europe',
-        }
+    @example Set a select value
+      debconf { 'tzdata/Areas':
+        type  => 'select',
+        value => 'Europe',
+      }
 
-        debconf { 'dash/sh':
-          type  => 'boolean',
-          value => 'true',
-        }
+    @example Set a boolean value
+      debconf { 'dash/sh':
+        type  => 'boolean',
+        value => 'true',
+      }
 
-        debconf { 'libraries/restart-without-asking':
-          package => 'libc6',
-          type    => 'boolean',
-          value   => 'true',
-          seen    => true,
-        }
+    @example Set a boolean value in a specified package and mark as seen
+      debconf { 'libraries/restart-without-asking':
+        package => 'libc6',
+        type    => 'boolean',
+        value   => 'true',
+        seen    => true,
+      }
   EOT
 
   def munge_boolean(value)
@@ -38,6 +41,10 @@ Puppet::Type.newtype(:debconf) do
   end
 
   ensurable do
+    desc 'Specifies whether the resource should exist. Setting this to
+      "absent" tells Puppet to remove the debconf entry if it exists, and
+      negates the effect of any other parameters.'
+
     defaultvalues
     defaultto :present
   end
