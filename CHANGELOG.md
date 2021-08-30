@@ -1,3 +1,14 @@
+## 2021-08-30 - Release 4.0.0
+
+### Breaking changes
+
+- Drop Ubuntu 14.04 support
+- Drop Debian 8 support
+
+### Features
+
+- Add Debian 11 (Bullseye) to the list of supported operating systems.
+
 ## 2021-03-04 - Release 3.3.1
 
 ### Bugfixes
