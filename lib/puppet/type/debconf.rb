@@ -49,11 +49,15 @@ Puppet::Type.newtype(:debconf) do
     defaultto :present
   end
 
-  newparam(:item, namevar: true) do
+  newparam(:name, namevar: true) do
+  end
+
+  newparam(:item) do
     desc "The item name. This string must have the following format: the
       package name, a literal slash char and the name of the question (e.g.
-      'tzdata/Areas')."
+      'tzdata/Areas'). defaults to the title of the resource"
 
+    defaultto { @resource[:name] }
     newvalues(%r{^[a-z0-9][a-z0-9:.+-]+\/[a-zA-Z0-9\/_.+-]+$})
   end
 

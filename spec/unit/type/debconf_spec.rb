@@ -22,7 +22,7 @@ describe Puppet::Type.type(:debconf) do
 
       describe 'namevar validation' do
         it 'has :item as its namevar' do
-          expect(described_class.key_attributes).to eq([:item])
+          expect(described_class.key_attributes).to eq([:name])
         end
       end
     end
