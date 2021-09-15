@@ -89,12 +89,15 @@ Valid values: `%r{^[a-z0-9][a-z0-9:.+-]+\/[a-zA-Z0-9\/_.+-]+$}`
 
 The item name. This string must have the following format: the
 package name, a literal slash char and the name of the question (e.g.
-'tzdata/Areas'). defaults to the title of the resource
+'tzdata/Areas'). The default value is the title of the resource.
 
 ##### <a name="name"></a>`name`
 
 namevar
 
+The name of the resource. If the parameter 'item' is not set, then
+this value will be used for it. You can set the same item in different
+packages by using different names for the resources.
 
 ##### <a name="package"></a>`package`
 

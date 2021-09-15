@@ -50,12 +50,15 @@ Puppet::Type.newtype(:debconf) do
   end
 
   newparam(:name, namevar: true) do
+    desc "The name of the resource. If the parameter 'item' is not set, then
+      this value will be used for it. You can set the same item in different
+      packages by using different names for the resources."
   end
 
   newparam(:item) do
     desc "The item name. This string must have the following format: the
       package name, a literal slash char and the name of the question (e.g.
-      'tzdata/Areas'). defaults to the title of the resource"
+      'tzdata/Areas'). The default value is the title of the resource."
 
     defaultto { @resource[:name] }
     newvalues(%r{^[a-z0-9][a-z0-9:.+-]+\/[a-zA-Z0-9\/_.+-]+$})
