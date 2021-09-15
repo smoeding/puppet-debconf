@@ -1,3 +1,9 @@
+## 2021-09-15 - Release 4.1.0
+
+### Bugfixes
+
+- Allow multiple resources for the same item in different packages without raising a duplicate resource error.
+
 ## 2021-08-30 - Release 4.0.0
 
 ### Breaking changes
