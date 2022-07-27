@@ -1,3 +1,14 @@
+## 2022-07-27 - Release 5.0.0
+
+### Features
+
+- Add Ubuntu 22.04 (Jammy) to the list of supported operating systems.
+
+### Breaking changes
+
+- Drop Ubuntu 16.04 support
+- Drop Debian 9 support
+
 ## 2021-09-15 - Release 4.1.0
 
 ### Bugfixes
