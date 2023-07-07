@@ -1,3 +1,13 @@
+## 2023-07-07 - Release 6.0.0
+
+### Features
+
+- Add support for Puppet 8
+
+### Breaking changes
+
+- Drop support for Puppet 6
+
 ## 2022-07-27 - Release 5.0.0
 
 ### Features
