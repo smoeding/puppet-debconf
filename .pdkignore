@@ -29,6 +29,7 @@
 /.fixtures.yml
 /Gemfile
 /.gitattributes
+/.github/
 /.gitignore
 /.pdkignore
 /.puppet-lint.rc
@@ -41,4 +42,3 @@
 /.vscode/
 /.sync.yml
 /.devcontainer/
-/.github/
