@@ -1,3 +1,10 @@
+## 2024-08-13 - Release 6.1.0
+
+### Features
+
+- Add sensible error message when calling `puppet resource debconf`.
+- Add Ubuntu-24.04 (Noble) to the list of support operating systems.
+
 ## 2023-07-07 - Release 6.0.0
 
 ### Features
