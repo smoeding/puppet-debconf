@@ -29,6 +29,10 @@ Puppet::Type.newtype(:debconf) do
       }
   EOT
 
+  def self.instances
+    raise _('Listing debconf instances is not supported.')
+  end
+
   def munge_boolean(value)
     case value
     when true, 'true', :true
