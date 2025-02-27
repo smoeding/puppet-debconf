@@ -2,8 +2,8 @@
 Puppet::Type.type(:debconf).provide(:debian) do
   desc 'Manage debconf database entries on Debian based systems.'
 
-  confine osfamily: :debian
-  defaultfor osfamily: :debian
+  confine 'os.family': 'Debian'
+  defaultfor 'os.family': 'Debian'
 
   # A private class to communicate with the debconf database
   class Debconf < IO
