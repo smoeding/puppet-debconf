@@ -20,11 +20,14 @@ group :development do
   gem "json", '= 2.6.1',                         require: false if Gem::Requirement.create(['>= 3.1.0', '< 3.1.3']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
   gem "json", '= 2.6.3',                         require: false if Gem::Requirement.create(['>= 3.2.0', '< 4.0.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
   gem "racc", '~> 1.4.0',                        require: false if Gem::Requirement.create(['>= 2.7.0', '< 3.0.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
-  gem "deep_merge", '~> 1.0',                    require: false
+  gem "deep_merge", '~> 1.2.2',                  require: false
   gem "voxpupuli-puppet-lint-plugins", '~> 5.0', require: false
-  gem "facterdb", '~> 1.18',                     require: false
+  gem "facterdb", '~> 2.1',                      require: false if Gem::Requirement.create(['< 3.0.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
+  gem "facterdb", '~> 3.0',                      require: false if Gem::Requirement.create(['>= 3.0.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
   gem "metadata-json-lint", '~> 4.0',            require: false
-  gem "rspec-puppet-facts", '~> 3.0',            require: false
+  gem "json-schema", '< 5.1.1',                  require: false
+  gem "rspec-puppet-facts", '~> 4.0',            require: false if Gem::Requirement.create(['< 3.0.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
+  gem "rspec-puppet-facts", '~> 5.0',            require: false if Gem::Requirement.create(['>= 3.0.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
   gem "dependency_checker", '~> 1.0.0',          require: false
   gem "parallel_tests", '= 3.12.1',              require: false
   gem "pry", '~> 0.10',                          require: false
@@ -37,7 +40,8 @@ group :development do
 end
 group :development, :release_prep do
   gem "puppet-strings", '~> 4.0',         require: false
-  gem "puppetlabs_spec_helper", '~> 7.0', require: false
+  gem "puppetlabs_spec_helper", '~> 8.0', require: false
+  gem "puppet-blacksmith", '~> 7.0',      require: false
 end
 group :system_tests do
   gem "puppet_litmus", '~> 1.0',   require: false, platforms: [:ruby, :x64_mingw]
