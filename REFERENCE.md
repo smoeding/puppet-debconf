@@ -69,8 +69,6 @@ of the boolean values true or false.
 
 ##### `value`
 
-Valid values: `%r{\S}`
-
 The value for the item (e.g. 'Europe').
 
 #### Parameters
