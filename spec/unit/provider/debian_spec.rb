@@ -3,11 +3,9 @@ require 'spec_helper'
 provider_class = Puppet::Type.type(:debconf).provider(:debian)
 
 describe provider_class do
-  let(:name) { 'foo' }
-
   let(:resource) do
     Puppet::Type.type(:debconf).new(
-      name:     name,
+      name:     'foo',
       provider: 'debian',
     )
   end

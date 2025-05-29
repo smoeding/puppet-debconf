@@ -14,9 +14,6 @@ def location_for(place_or_version, fake_version = nil)
 end
 
 group :development do
-  gem "json", '= 2.1.0',                         require: false if Gem::Requirement.create(['>= 2.5.0', '< 2.7.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
-  gem "json", '= 2.3.0',                         require: false if Gem::Requirement.create(['>= 2.7.0', '< 3.0.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
-  gem "json", '= 2.5.1',                         require: false if Gem::Requirement.create(['>= 3.0.0', '< 3.0.5']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
   gem "json", '= 2.6.1',                         require: false if Gem::Requirement.create(['>= 3.1.0', '< 3.1.3']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
   gem "json", '= 2.6.3',                         require: false if Gem::Requirement.create(['>= 3.2.0', '< 4.0.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
   gem "racc", '~> 1.4.0',                        require: false if Gem::Requirement.create(['>= 2.7.0', '< 3.0.0']).satisfied_by?(Gem::Version.new(RUBY_VERSION.dup))
@@ -49,18 +46,21 @@ group :system_tests do
   gem "serverspec", '~> 2.41',     require: false
 end
 
-puppet_version = ENV['PUPPET_GEM_VERSION']
-facter_version = ENV['FACTER_GEM_VERSION']
-hiera_version = ENV['HIERA_GEM_VERSION']
-
 gems = {}
+puppet_version = ENV.fetch('PUPPET_GEM_VERSION', nil)
+facter_version = ENV.fetch('FACTER_GEM_VERSION', nil)
+hiera_version = ENV.fetch('HIERA_GEM_VERSION', nil)
 
-gems['puppet'] = location_for(puppet_version)
+# If PUPPET_FORGE_TOKEN is set then use authenticated source for both puppet and facter, since facter is a transitive dependency of puppet
+# Otherwise, do as before and use location_for to fetch gems from the default source
+if !ENV['PUPPET_FORGE_TOKEN'].to_s.empty?
+  gems['puppet'] = ['~> 8.11', { require: false, source: 'https://rubygems-puppetcore.puppet.com' }]
+  gems['facter'] = ['~> 4.11', { require: false, source: 'https://rubygems-puppetcore.puppet.com' }]
+else
+  gems['puppet'] = location_for(puppet_version)
+  gems['facter'] = location_for(facter_version) if facter_version
+end
 
-# If facter or hiera versions have been specified via the environment
-# variables
-
-gems['facter'] = location_for(facter_version) if facter_version
 gems['hiera'] = location_for(hiera_version) if hiera_version
 
 gems.each do |gem_name, gem_params|
