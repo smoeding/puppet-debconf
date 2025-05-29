@@ -1,3 +1,13 @@
+## 2025-05-29 - Release 6.2.0
+
+### Bugfixes
+
+- The debconf value can now also be an empty string
+
+### Features
+
+- Remove legacy facts
+
 ## 2024-08-13 - Release 6.1.0
 
 ### Features
