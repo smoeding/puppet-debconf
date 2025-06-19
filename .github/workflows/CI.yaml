@@ -34,3 +34,6 @@ jobs:
 
       - name: Validate
         run: rake -f /Rakefile validate
+
+      - name: Unit Tests
+        run: rake -f /Rakefile spec
