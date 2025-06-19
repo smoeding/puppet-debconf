@@ -1,4 +1,4 @@
-# CI.yaml --- Check Puppet module
+# CI.yaml --- Check OpenVox module
 
 name: CI
 
@@ -12,16 +12,16 @@ on:
 
 jobs:
   check:
-    name: Puppet ${{ matrix.puppet_version }}
+    name: OpenVox ${{ matrix.puppet_version }}
     runs-on: ubuntu-latest
 
     strategy:
       fail-fast: false
       matrix:
-        puppet_version: [8]
+        openvox_version: [8]
 
     container:
-      image: ghcr.io/voxpupuli/voxbox:${{ matrix.puppet_version }}
+      image: ghcr.io/voxpupuli/voxbox:${{ matrix.openvox_version }}
       volumes:
         - ${{ github.workspace }}:/repo
 
