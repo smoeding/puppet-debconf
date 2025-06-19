@@ -27,11 +27,17 @@ jobs:
     container:
       image: ghcr.io/voxpupuli/voxbox:${{ matrix.openvox_version }}
       volumes:
-        - ${{ github.workspace }}:/repo:Z
+        - ${{ github.workspace }}:/repo
 
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
+
+      - name: Git settings
+        run: git config --list --show-origin
+
+      - name: Syntax
+        run: rake -f /Rakefile syntax
 
       - name: Check
         run: rake -f /Rakefile check
@@ -47,9 +53,6 @@ jobs:
 
       - name: Rubocop
         run: rake -f /Rakefile rubocop
-
-      - name: Syntax
-        run: rake -f /Rakefile syntax
 
       - name: Unit Tests
         run: rake -f /Rakefile spec
