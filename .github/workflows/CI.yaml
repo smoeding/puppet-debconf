@@ -30,7 +30,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Lint
-        run: -f /Rakefile lint
+        run: rake -f /Rakefile lint
 
       - name: Validate
-        run: -f /Rakefile validate
+        run: rake -f /Rakefile validate
