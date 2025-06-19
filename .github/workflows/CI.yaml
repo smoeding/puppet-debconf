@@ -38,6 +38,7 @@ jobs:
       image: ghcr.io/voxpupuli/voxbox:${{ matrix.openvox_version }}
       volumes:
         - ${{ github.workspace }}:/repo
+        - /etc/gitconfig:/etc/gitconfig
 
     steps:
       - name: Clone repository
