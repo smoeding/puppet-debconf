@@ -15,6 +15,16 @@ on:
     - cron: '17 2 * * 0'
 
 jobs:
+  setup:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clone repository
+        uses: actions/checkout@v4
+
+      - name: Git settings
+        run: git config --list --show-origin
+
   qa:
     name: OpenVox ${{ matrix.puppet_version }}
     runs-on: ubuntu-latest
@@ -32,9 +42,6 @@ jobs:
     steps:
       - name: Clone repository
         uses: actions/checkout@v4
-
-      - name: Git settings
-        run: git config --list --show-origin
 
       - name: Syntax
         run: rake -f /Rakefile syntax
