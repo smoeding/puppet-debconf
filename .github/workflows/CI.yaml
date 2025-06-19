@@ -23,7 +23,7 @@ jobs:
     container:
       image: ghcr.io/voxpupuli/voxbox:${{ matrix.puppet_version }}
       volumes:
-        ${{ github.workspace }}:/repo:Z
+        ${{ github.workspace }}:/repo
 
     steps:
       - name: Clone repository
