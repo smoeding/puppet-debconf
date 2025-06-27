@@ -2,6 +2,7 @@
 
 [![Build Status](https://github.com/smoeding/puppet-debconf/actions/workflows/CI.yaml/badge.svg)](https://github.com/smoeding/puppet-debconf/actions/workflows/CI.yaml)
 [![Puppet Forge](https://img.shields.io/puppetforge/v/stm/debconf.svg)](https://forge.puppetlabs.com/stm/debconf)
+[![OpenVox](https://img.shields.io/badge/OpenVox-orange?label=Tested%20on)](https://voxpupuli.org/openvox/)
 [![License](https://img.shields.io/github/license/smoeding/puppet-debconf.svg)](https://raw.githubusercontent.com/smoeding/puppet-debconf/master/LICENSE)
 
 #### Table of Contents
