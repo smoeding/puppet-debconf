@@ -1,14 +1,16 @@
+# frozen_string_literal: true
+
 require 'spec_helper'
 
 describe Puppet::Type.type(:debconf) do
   on_supported_os.each do |os, _facts|
     context "on #{os}" do
-      before(:each) do
+      before do
         Facter.clear
       end
 
       describe 'when validating attributes' do
-        [:item, :package, :type].each do |param|
+        %i[item package type].each do |param|
           it "has a #{param} parameter" do
             expect(described_class.attrtype(param)).to eq(:param)
           end

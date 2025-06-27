@@ -83,7 +83,7 @@ The following parameters are available in the `debconf` type.
 
 ##### <a name="-debconf--item"></a>`item`
 
-Valid values: `%r{^[a-z0-9][a-z0-9:.+-]+\/[a-zA-Z0-9\/_.+-]+$}`
+Valid values: `%r{^[a-z0-9][a-z0-9:.+-]+/[a-zA-Z0-9/_.+-]+$}`
 
 The item name. This string must have the following format: the
 package name, a literal slash char and the name of the question (e.g.

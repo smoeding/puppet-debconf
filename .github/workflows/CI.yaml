@@ -12,21 +12,11 @@ on:
       - main
       - master
   schedule:
-    - cron: '17 2 * * 0'
+    - cron: '22 2 * * 0'
 
 jobs:
-  setup:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Clone repository
-        uses: actions/checkout@v4
-
-      - name: Git settings
-        run: git config --list --show-origin
-
-  qa:
-    name: OpenVox ${{ matrix.puppet_version }}
+  checks:
+    name: OpenVox ${{ matrix.openvox_version }}
     runs-on: ubuntu-latest
 
     strategy:
@@ -50,13 +40,13 @@ jobs:
       - name: Check
         run: rake -f /Rakefile check
 
-      - name: Lint
+      - name: Lint code
         run: rake -f /Rakefile lint
 
-      - name: YAML Lint
+      - name: Lint YAML
         run: yamllint data/
 
-      - name: Metadata Lint
+      - name: Lint Metadata
         run: rake -f /Rakefile metadata_lint
 
       - name: Rubocop
