@@ -12,7 +12,7 @@ on:
       - main
       - master
   schedule:
-    - cron: '22 2 * * 0'
+    - cron: '33 2 * * 0'
 
 jobs:
   checks:
@@ -44,6 +44,7 @@ jobs:
         run: rake -f /Rakefile lint
 
       - name: Lint YAML
+        if: ${{ hashFiles('data') != '' }}
         run: yamllint data/
 
       - name: Lint Metadata
