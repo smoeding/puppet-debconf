@@ -1,4 +1,1 @@
 ---
-fixtures:
-  symlinks:
-    'debconf': "#{source_dir}"
