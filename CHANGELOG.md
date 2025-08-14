@@ -1,3 +1,14 @@
+## 2025-08-14 - Release 7.0.0
+
+### Features
+
+- Add Debian-13 (Trixie) to the list of supported operating systems.
+
+### Breaking changes
+
+- Drop support for Debian-10.
+- Drop support for Ubuntu-24.04.
+
 ## 2025-05-29 - Release 6.2.0
 
 ### Bugfixes
