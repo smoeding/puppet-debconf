@@ -3,7 +3,7 @@
 require 'spec_helper'
 
 describe Puppet::Type.type(:debconf) do
-  on_supported_os.each do |os, _facts|
+  on_supported_os.each_key do |os|
     context "on #{os}" do
       before do
         Facter.clear

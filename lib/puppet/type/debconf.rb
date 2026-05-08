@@ -88,7 +88,8 @@ Puppet::Type.newtype(:debconf) do
   newproperty(:value) do
     desc "The value for the item (e.g. 'Europe')."
 
-    munge(&:strip)              # Remove leading and trailing spaces
+    # Remove leading and trailing spaces
+    munge(&:strip)
   end
 
   newproperty(:seen, boolean: true) do

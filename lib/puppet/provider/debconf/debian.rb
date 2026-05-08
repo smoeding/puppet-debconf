@@ -12,11 +12,6 @@ Puppet::Type.type(:debconf).provide(:debian) do
   # The Debian debconf provider
   #
 
-  def initialize(value = {})
-    super(value)
-    @property_hash = {}
-  end
-
   # Fetch item properties
   def fetch
     Puppet.debug("Debconf: fetch #{resource[:item]} for #{resource[:package]}")
