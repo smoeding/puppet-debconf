@@ -1,6 +1,6 @@
 {
   "name": "stm-debconf",
-  "version": "7.0.1",
+  "version": "8.0.0",
   "author": "stm",
   "summary": "Manage debconf database items on Debian based systems.",
   "license": "BSD-2-Clause",
@@ -24,18 +24,15 @@
       "operatingsystemrelease": [
         "20.04",
         "22.04",
-        "24.04"
+        "24.04",
+        "26.04"
       ]
     }
   ],
   "requirements": [
     {
-      "name": "puppet",
-      "version_requirement": ">= 7.0.0 < 9.0.0"
-    },
-    {
       "name": "openvox",
-      "version_requirement": ">= 7.0.0 < 9.0.0"
+      "version_requirement": ">= 8.19.0 < 9.0.0"
     }
   ],
   "tags": [

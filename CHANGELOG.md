@@ -1,3 +1,13 @@
+## 2026-05-08 - Release 8.0.0
+
+### Features
+
+- Add Ubuntu-26.04 (Resolute) to the list of supported operating systems.
+
+### Breaking changes
+
+- Drop support for Puppet.
+
 ## 2025-08-15 - Release 7.0.1
 
 ### Features
